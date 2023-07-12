@@ -1,22 +1,25 @@
 name: ci-node-workflow
-on: push
+on:
+  pull_request:
+    branches:
+      - beta
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3
-        
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
 
       - run: npm install
 
-      - name: test
+      - name: Test
         run: npm test
 
-      - name: application build
+      - name: Application Build
         run: npm run build
 
       
